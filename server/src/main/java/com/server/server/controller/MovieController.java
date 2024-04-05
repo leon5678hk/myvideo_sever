@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/movies") // Base URI for all endpoints in this controller
+@RequestMapping("/movies")  // Base URI for all endpoints in this controller
 public class MovieController {
 
     private final MovieRepository movieRepository;
@@ -22,7 +22,7 @@ public class MovieController {
         this.movieRepository = movieRepository;
     }
 
-    // Get Movies(all,featured)
+    // Get Movies(all,featured)  /movies?is_feature=true
     @GetMapping
     public List<Movie> getMovies(@RequestParam(required = false) Boolean isFeatured) {
         if (isFeatured != null) {
@@ -31,7 +31,7 @@ public class MovieController {
         return movieRepository.findAll();
     }
 
-    // Get a movie by its integer id
+    // Get a movie by its integer id 
     @GetMapping("/{id}")
     public ResponseEntity<?> getMovieById(@PathVariable int id) {
         Movie movie = movieRepository.findById(id).orElse(null);

@@ -17,7 +17,6 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
 
     Movie save(Movie movie);
 
-    // New method to delete an existing movie
     void deleteById(int id);
 
     @Query(value = "{}", sort = "{ 'id' : -1 }")

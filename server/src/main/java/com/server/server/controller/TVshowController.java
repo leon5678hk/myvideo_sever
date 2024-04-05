@@ -21,7 +21,7 @@ public class TVshowController {
         this.tvShowRepository = tvShowRepository;
     }
 
-    //Get TV shows(all,featured)
+    //Get TV shows(all,featured) /tvshows?is_feature=true
     @GetMapping
     public List<TVshow> getMovies(@RequestParam(required = false) Boolean isFeatured) {
         if (isFeatured != null) {
@@ -88,12 +88,16 @@ public class TVshowController {
         return ResponseEntity.ok(savedTVshow);
     }
 
+    // Delete an existing tv show
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTvShow(@PathVariable int id) {
+        // Check if the tv show exists
         TVshow existingtvShow = tvShowRepository.findById(id).orElse(null);
         if (existingtvShow == null) {
             return ResponseEntity.badRequest().body("TV show not found with ID: " + id);
         }
+
+        // Delete the movie
         tvShowRepository.deleteById(id);
         return ResponseEntity.ok("TV show with ID: " + id + " deleted successfully.");
     }

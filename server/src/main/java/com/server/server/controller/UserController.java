@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/users") // Base URI for all endpoints in this controller
 public class UserController {
 
     private final UserRepository userRepository;
@@ -24,14 +24,16 @@ public class UserController {
     @Autowired
     public UserController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder; // Initialize the passwordEncoder
+        this.passwordEncoder = passwordEncoder;
     }
 
+    //get all users
     @GetMapping
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    //get user by id(not_id)
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable int id) {
         User user = userRepository.findById(id).orElse(null);
@@ -41,6 +43,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    //authentication and return user object(for login)
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticateUser(@RequestBody User credentials) {
         String email = credentials.getEmail();
@@ -58,6 +61,7 @@ public class UserController {
         }
     }
 
+    //registration
     @PostMapping
     public ResponseEntity<?> createUser(@Validated @RequestBody User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

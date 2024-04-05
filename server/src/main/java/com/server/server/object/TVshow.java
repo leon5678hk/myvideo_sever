@@ -141,7 +141,6 @@ public class TVshow {
         this.is_featured = is_featured;
     }
 
-    // Optional: Override toString for better object representation
     @Override
     public String toString() {
         return "TVShow{" +

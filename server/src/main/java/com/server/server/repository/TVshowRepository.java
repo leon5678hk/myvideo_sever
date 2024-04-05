@@ -17,7 +17,6 @@ public interface TVshowRepository extends MongoRepository<TVshow, String> {
 
     TVshow save(TVshow movie);
 
-    // New method to delete an existing movie
     void deleteById(int id);
 
     @Query(value = "{}", sort = "{ 'id' : -1 }")
