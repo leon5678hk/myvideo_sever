@@ -7,6 +7,7 @@ import com.server.server.object.Movie;
 import java.util.List;
 import java.util.Optional;
 
+//managing movie data in MongoDB
 public interface MovieRepository extends MongoRepository<Movie, String> {
     Optional<Movie> findById(int id);
 
@@ -21,4 +22,7 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
 
     @Query(value = "{}", sort = "{ 'id' : -1 }")
     List<Movie> findTopByOrderByIdDesc(Sort sort);
+
+    List<Movie> findByTitleContainingIgnoreCase(String title);
+
 }

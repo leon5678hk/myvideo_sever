@@ -13,7 +13,7 @@ public class MongoConfig {
     @Bean
     public MappingMongoConverter mappingMongoConverter(MongoDatabaseFactory factory, MongoMappingContext context) {
         MappingMongoConverter converter = new MappingMongoConverter(factory, context);
-        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null)); //disable auto-gen _class field
         return converter;
     }
 }

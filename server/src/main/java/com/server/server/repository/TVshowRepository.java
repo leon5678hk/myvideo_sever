@@ -7,6 +7,7 @@ import com.server.server.object.TVshow;
 import java.util.List;
 import java.util.Optional;
 
+//managing tvshow data in MongoDB
 public interface TVshowRepository extends MongoRepository<TVshow, String> {
     Optional<TVshow> findById(int id);
 
@@ -21,4 +22,7 @@ public interface TVshowRepository extends MongoRepository<TVshow, String> {
 
     @Query(value = "{}", sort = "{ 'id' : -1 }")
     List<TVshow> findTopByOrderByIdDesc(Sort sort);
+
+    List<TVshow> findByTitleContainingIgnoreCase(String title);
+
 }

@@ -9,6 +9,7 @@ import com.server.server.object.User;
 import java.util.List;
 import java.util.Optional;
 
+//managing user data in MongoDB
 public interface UserRepository extends MongoRepository<User, String> {
     Optional<User> findById(int id);
     User findByEmail(String email);
