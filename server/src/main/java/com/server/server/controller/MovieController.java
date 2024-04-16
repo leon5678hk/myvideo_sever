@@ -38,7 +38,7 @@ public class MovieController {
         try {
             return ResponseEntity.ok(movieService.createMovie(movie));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

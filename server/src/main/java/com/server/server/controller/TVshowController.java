@@ -38,7 +38,7 @@ public class TVshowController {
         try {
             return ResponseEntity.ok(tvShowService.createTVShow(tvShow));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
