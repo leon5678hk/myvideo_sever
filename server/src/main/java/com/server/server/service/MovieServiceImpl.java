@@ -32,8 +32,8 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie createMovie(Movie movie) {
-        validateMovie(movie); // Validate movie data
-
+        validateMovie(movie); 
+        movie.setType("movie");
         List<Movie> maxIdMovieList = movieRepository.findTopByOrderByIdDesc(Sort.by(Sort.Direction.DESC, "id"));
         int newId = maxIdMovieList.isEmpty() ? 1 : maxIdMovieList.get(0).getId() + 1;
         movie.setId(newId);
@@ -78,7 +78,7 @@ public class MovieServiceImpl implements MovieService {
             movie.getStarring() == null || movie.getStarring().isEmpty()) {
             throw new IllegalArgumentException("All fields (title, imageUrl, intro, genres, starring,IMDb rating, duration, rent price, purchase price) must be provided and not empty.");
         }
-        
+
         if (movie.getImdbRating() == 0.0 || movie.getDuration() < 0 ||
             movie.getRentPrice() < 0 || movie.getPurchasePrice() < 0) {
             throw new IllegalArgumentException("IMDb rating, duration, rent price, and purchase price must be provided and non-negative.");

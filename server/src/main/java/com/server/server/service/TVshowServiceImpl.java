@@ -34,6 +34,7 @@ public class TVshowServiceImpl implements TVshowService {
     @Override
     public TVshow createTVShow(TVshow tvShow) {
         validateTVShow(tvShow); 
+        tvShow.setType("tv");
         // Find the largest ID to assign a new ID
         List<TVshow> maxIdTVShowList = tvShowRepository.findTopByOrderByIdDesc(Sort.by(Sort.Direction.DESC, "id"));
         int newId = maxIdTVShowList.isEmpty() ? 1 : maxIdTVShowList.get(0).getId() + 1;

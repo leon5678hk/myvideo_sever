@@ -8,9 +8,9 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
-@Data               // Generates getters, setters, toString, equals, and hashCode methods
-@NoArgsConstructor  // Generates a no-argument constructor
-@AllArgsConstructor // Generates an all-argument constructor
+@Data               // getters, setters
+@NoArgsConstructor  // no-argument constructor
+@AllArgsConstructor // all-argument constructor
 @Document("tvshows")
 public class TVshow {
     @Id

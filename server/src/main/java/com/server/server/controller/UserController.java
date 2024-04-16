@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.server.server.object.User;
 import com.server.server.service.UserService;
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/users")
