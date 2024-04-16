@@ -28,7 +28,7 @@ public class TVshowController {
     public ResponseEntity<?> getTVShowById(@PathVariable int id) {
         TVshow tvShow = tvShowService.getTVShowById(id);
         if (tvShow == null) {
-            return ResponseEntity.badRequest().body("Invalid TV show data");
+            return ResponseEntity.badRequest().body("Invalid TV show ID");
         }
         return ResponseEntity.ok(tvShow);
     }

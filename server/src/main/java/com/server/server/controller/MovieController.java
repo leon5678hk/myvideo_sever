@@ -28,7 +28,7 @@ public class MovieController {
     public ResponseEntity<?> getMovieById(@PathVariable int id) {
         Movie movie = movieService.getMovieById(id);
         if (movie == null) {
-            return ResponseEntity.badRequest().body("Invalid movie data");
+            return ResponseEntity.badRequest().body("Invalid movie ID");
         }
         return ResponseEntity.ok(movie);
     }

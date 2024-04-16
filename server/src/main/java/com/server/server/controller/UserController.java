@@ -1,5 +1,7 @@
 package com.server.server.controller;
 
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,7 @@ public class UserController {
     public ResponseEntity<?> getUserById(@PathVariable int id) {
         User user = userService.getUserById(id);
         if (user == null) {
-            return ResponseEntity.badRequest().body("Invalid user data");
+            return ResponseEntity.badRequest().body("Invalid user ID");
         }
         return ResponseEntity.ok(user);
     }
@@ -47,7 +49,6 @@ public class UserController {
             User savedUser = userService.createUser(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "Email already exists"));        }
     }
 }
